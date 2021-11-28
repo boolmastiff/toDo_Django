@@ -1,0 +1,29 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+
+<a href="{% url 'tasks' %}">&#8592; Back</a>
+<button style="background-color: #40E0D0; font-size: 30px; border:none;" onclick="prefillData()">&#128193;</button>
+</div>
+
+<div class="card-body">
+<form method="POST" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="button" type="submit" value="submit">
+</form>
+</div>
+
+<script>
+    localStorage.todoTitle = "Give Zac an A+";
+    localStorage.todoDescription = "This data has come from HTML LocalStorage";
+    
+
+    function prefillData(){
+        document.getElementById("id_title").value = localStorage.todoTitle;
+        document.getElementById("id_description").innerHTML = localStorage.todoDescription;
+
+    }
+    </script>
+{% endblock content %}
